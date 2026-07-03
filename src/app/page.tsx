@@ -1,65 +1,131 @@
-import Image from "next/image";
+import type { Metadata } from "next"
+import Image from "next/image"
+import Link from "next/link"
+import servicios from "@/lib/servicios"
+import { whatsappUrl } from "@/lib/contacto"
 
-export default function Home() {
+export const metadata: Metadata = {
+  description:
+    "Cuidamos tu sonrisa con atención profesional, calidez y compromiso. Odontopediatría, prótesis, blanqueamiento y cirugía odontológica en Santiago del Estero.",
+}
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <main>
+      <section className="relative bg-primary text-white">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src="/images/consultorio-hero.jpg"
+          alt="Consultorio de Odontología Integral y Estética en Santiago del Estero"
+          fill
+          className="object-cover opacity-30"
           priority
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+        <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center px-4 py-20 text-center sm:px-6 lg:px-8">
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+            Odontología Integral y Estética
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-4 max-w-2xl text-lg text-white/90">
+            Cuidamos tu sonrisa con atención profesional, calidez y compromiso.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          <Link
+            href={whatsappUrl()}
             target="_blank"
             rel="noopener noreferrer"
+            className="mt-8 inline-flex items-center rounded-lg bg-secondary px-6 py-3 text-sm font-semibold text-text shadow-sm transition-colors hover:bg-secondary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            Pedí tu turno ahora
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-surface py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-primary sm:text-3xl">
+            Nuestros servicios
+          </h2>
+          <p className="mt-2 text-text/70">
+            Conocé todos los tratamientos que ofrecemos.
+          </p>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {servicios.map((s) => (
+              <Link
+                key={s.id}
+                href={`/servicios/${s.slug}`}
+                className="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
+              >
+                <s.icono className="h-6 w-6 text-primary" />
+                <h3 className="mt-3 font-semibold text-primary">{s.nombre}</h3>
+                <p className="mt-1 text-sm text-text/70 line-clamp-3">
+                  {s.descripcionCorta}
+                </p>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Link
+              href="/servicios"
+              className="text-sm font-medium text-primary hover:text-primary-light"
+            >
+              Ver todos los servicios &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-surface py-12 text-center">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-primary sm:text-3xl">
+            ¿Tenés dolor o algún síntoma?
+          </h2>
+          <p className="mt-2 text-text/70">
+            Informate sobre las condiciones más comunes y cuándo consultar.
+          </p>
+          <Link
+            href="/condiciones"
+            className="mt-6 inline-flex items-center rounded-lg border border-secondary px-6 py-3 text-sm font-semibold text-primary shadow-sm transition-colors hover:bg-secondary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
+          >
+            Ver condiciones y enfermedades
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-primary sm:text-3xl">
+            Sobre nosotros
+          </h2>
+          <p className="mt-4 max-w-2xl leading-relaxed text-text/70">
+            Somos un equipo de odontólogos con más de 20 años de experiencia
+            cuidando la salud bucal de nuestros pacientes en Santiago del
+            Estero. Te recibimos con calidez y profesionalismo.
+          </p>
+          <Link
+            href="/sobre-nosotros"
+            className="mt-4 inline-block text-sm font-medium text-primary hover:text-primary-light"
+          >
+            Conocé más sobre nosotros &rarr;
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-primary py-16">
+        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-white sm:text-3xl">
+            Agendá tu consulta
+          </h2>
+          <p className="mt-2 text-white/90">
+            Contactanos y te responderemos a la brevedad.
+          </p>
+          <Link
+            href={whatsappUrl()}
             target="_blank"
             rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center rounded-lg bg-secondary px-6 py-3 text-sm font-semibold text-text shadow-sm transition-colors hover:bg-secondary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
           >
-            Documentation
-          </a>
+            Escribinos por WhatsApp
+          </Link>
         </div>
-      </main>
-    </div>
-  );
+      </section>
+    </main>
+  )
 }
