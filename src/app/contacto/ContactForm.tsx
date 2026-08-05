@@ -2,7 +2,6 @@
 
 import { useState, type FormEvent } from "react"
 import { Send } from "lucide-react"
-import { CONTACTO } from "@/lib/contacto"
 
 type FormState = "idle" | "sending" | "success" | "error"
 
@@ -118,6 +117,13 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-5 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm">
+      <div>
+        <h2 className="font-semibold text-primary">Envianos un mensaje</h2>
+        <p className="mt-1 text-sm text-text/70">
+          Completá el formulario y te contactamos a la brevedad.
+        </p>
+      </div>
+
       {/* Honeypot — invisible para humanos, bots lo completan */}
       <input
         type="text"

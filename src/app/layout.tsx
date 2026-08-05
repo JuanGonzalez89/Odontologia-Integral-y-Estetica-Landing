@@ -4,6 +4,7 @@ import "./globals.css"
 import { SITE_URL } from "@/lib/constants"
 import { CONTACTO } from "@/lib/contacto"
 import equipo from "@/lib/equipo"
+import servicios from "@/lib/servicios"
 
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
@@ -26,7 +27,10 @@ export const metadata: Metadata = {
     template: "%s | Odontología Integral y Estética",
   },
   description:
-    "Servicios odontológicos profesionales en Santiago del Estero. Odontopediatría, prótesis, blanqueamiento, cirugía, endodoncia, limpieza, radiografías y odontología general.",
+    "Servicios odontológicos profesionales en Santiago del Estero. Odontopediatría, prótesis, blanqueamiento, cirugía, endodoncia, limpieza, radiografías, reconstrucción dental y odontología general.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "es_AR",
@@ -49,8 +53,18 @@ const jsonLd = {
     "@type": "PostalAddress",
     streetAddress: "Avellaneda 283, 2do Piso",
     addressLocality: "Santiago del Estero",
+    addressRegion: "Santiago del Estero",
     addressCountry: "AR",
   },
+  areaServed: {
+    "@type": "City",
+    name: "Santiago del Estero",
+  },
+  availableService: servicios.map((s) => ({
+    "@type": "MedicalProcedure",
+    name: s.nombre,
+    description: s.descripcionCorta,
+  })),
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
@@ -70,6 +84,7 @@ const jsonLd = {
     "@type": "Person",
     name: p.nombre,
     jobTitle: "Odontólogo/a",
+    email: p.email,
     ...(p.matricula && { identifier: p.matricula }),
   })),
 }

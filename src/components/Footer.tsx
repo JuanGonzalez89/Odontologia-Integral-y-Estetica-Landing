@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { CONTACTO, whatsappUrl } from "@/lib/contacto"
 
 export default function Footer() {
@@ -18,25 +19,23 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-sm text-white/90">
               <li>{CONTACTO.direccion}</li>
-              <li>
-                <a
-                  href={whatsappUrl()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline-offset-2 hover:text-secondary-light hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
-                >
-                  {CONTACTO.telefono}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${CONTACTO.email}`}
-                  className="underline-offset-2 hover:text-secondary-light hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
-                >
-                  {CONTACTO.email}
-                </a>
-              </li>
             </ul>
+            <div className="mt-3 flex flex-col items-start gap-2">
+              <a
+                href={whatsappUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-secondary-light hover:text-secondary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+              >
+                Escribinos por WhatsApp &rarr;
+              </a>
+              <Link
+                href="/contacto"
+                className="text-sm font-medium text-secondary-light hover:text-secondary hover:underline"
+              >
+                Ver teléfonos y emails &rarr;
+              </Link>
+            </div>
           </div>
 
           <div>

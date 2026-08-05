@@ -8,9 +8,15 @@ import { Menu, X } from "lucide-react"
 const NAV_LINKS = [
   { href: "/", label: "Inicio" },
   { href: "/servicios", label: "Servicios" },
+  { href: "/condiciones", label: "Condiciones" },
   { href: "/sobre-nosotros", label: "Sobre nosotros" },
   { href: "/contacto", label: "Contacto" },
 ]
+
+function esRutaActiva(pathname: string, href: string) {
+  if (href === "/") return pathname === "/"
+  return pathname === href || pathname.startsWith(`${href}/`)
+}
 
 export default function Header() {
   const pathname = usePathname()
@@ -26,14 +32,14 @@ export default function Header() {
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="text-xl font-bold tracking-tight text-white transition-colors hover:text-secondary-light"
+            className="text-lg font-bold leading-tight tracking-tight text-white transition-colors hover:text-secondary-light sm:text-xl"
           >
-            Odontología Integral
+            Odontología Integral <span className="text-secondary-light">y Estética</span>
           </Link>
 
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-md p-2 text-white/90 transition-colors hover:text-secondary-light md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+            className="inline-flex items-center justify-center rounded-md p-2 text-white/90 transition-colors hover:text-secondary-light lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
             onClick={() => setMenuAbierto(!menuAbierto)}
             aria-label={menuAbierto ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
             aria-expanded={menuAbierto}
@@ -41,9 +47,9 @@ export default function Header() {
             {menuAbierto ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
 
-          <ul className="hidden items-center gap-1 text-sm font-medium md:flex sm:gap-2">
+          <ul className="hidden items-center gap-1 text-sm font-medium lg:flex">
             {NAV_LINKS.map((link) => {
-              const isActive = pathname === link.href
+              const isActive = esRutaActiva(pathname, link.href)
               return (
                 <li key={link.href}>
                   <Link
@@ -73,13 +79,13 @@ export default function Header() {
         <div
           className={`${
             menuAbierto ? "visible opacity-100 translate-y-0" : "invisible opacity-0 -translate-y-2"
-          } absolute left-0 right-0 top-full z-40 bg-primary transition-all duration-200 md:hidden`}
+          } absolute left-0 right-0 top-full z-40 bg-primary transition-all duration-200 lg:hidden`}
           role="navigation"
           aria-label="Menú de navegación mobile"
         >
           <ul className="divide-y divide-white/10">
             {NAV_LINKS.map((link) => {
-              const isActive = pathname === link.href
+              const isActive = esRutaActiva(pathname, link.href)
               return (
                 <li key={link.href}>
                   <Link
