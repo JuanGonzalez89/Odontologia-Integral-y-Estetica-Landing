@@ -89,13 +89,13 @@ export default function AgendaTurno() {
 
       {seleccionado !== null && doctorSeleccionado && (
         <div
-          className="fixed inset-0 z-50 flex flex-col bg-black/50 p-0 sm:items-center sm:justify-center sm:p-4"
+          className="fixed inset-0 z-50 flex flex-col bg-black/50 p-0 lg:items-center lg:justify-center lg:p-4"
           onClick={(e) => {
             if (e.target === e.currentTarget) setSeleccionado(null)
           }}
         >
-          <div className="flex h-full w-full flex-col bg-white shadow-xl sm:h-[96vh] sm:max-w-2xl sm:rounded-xl">
-            <div className="flex flex-shrink-0 items-center justify-between border-b border-zinc-100 bg-surface px-5 py-3 sm:rounded-t-xl">
+          <div className="flex h-full w-full flex-col bg-white shadow-xl lg:h-[92vh] lg:max-w-6xl lg:rounded-xl">
+            <div className="flex flex-shrink-0 items-center justify-between border-b border-zinc-100 bg-surface px-5 py-3 lg:rounded-t-xl">
               <p className="text-sm font-medium text-primary">
                 Agenda de {doctorSeleccionado.nombre}
               </p>
@@ -107,11 +107,17 @@ export default function AgendaTurno() {
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <iframe
-              src={AGENDAS[seleccionado]}
-              title={`Agenda de turnos — ${doctorSeleccionado.nombre}`}
-              className="w-full flex-1"
-            />
+            {/* turnito rompe el calendario si su layout renderiza angosto en
+                escritorio: a 672px la grilla de días queda vacía, a 768px
+                funciona. En pantallas táctiles angostas sí funciona, así que
+                el min-width solo aplica desde sm hacia arriba. */}
+            <div className="flex-1 overflow-auto">
+              <iframe
+                src={AGENDAS[seleccionado]}
+                title={`Agenda de turnos — ${doctorSeleccionado.nombre}`}
+                className="h-full w-full sm:min-w-[768px]"
+              />
+            </div>
           </div>
         </div>
       )}
