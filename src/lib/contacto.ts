@@ -3,7 +3,7 @@ export const CONTACTO = {
   telefono: "(385) 688-8606",
   telefonoSchema: "+5493856888606",
   whatsapp: "5493856888606",
-  email: "odontologia.sgo@gmail.com",
+  email: "odontologiasgo@gmail.com",
   horarios: {
     dias: "Lunes a viernes",
     manana: "9:00 – 12:30",
