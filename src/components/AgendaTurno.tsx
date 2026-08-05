@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Calendar, X } from 'lucide-react'
 import equipo from '@/lib/equipo'
@@ -16,6 +16,24 @@ export default function AgendaTurno() {
   const doctorSeleccionado = seleccionado
     ? equipo.find((e) => e.id === seleccionado)
     : null
+
+  useEffect(() => {
+    if (seleccionado === null) return
+    const original = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = original
+    }
+  }, [seleccionado])
+
+  useEffect(() => {
+    if (seleccionado === null) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSeleccionado(null)
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [seleccionado])
 
   return (
     <section className="bg-white py-16" id="agenda">
@@ -60,37 +78,43 @@ export default function AgendaTurno() {
                   </p>
                   <p className="mt-1.5 flex items-center gap-1.5 text-sm font-medium text-secondary">
                     <Calendar className="h-3.5 w-3.5" aria-hidden="true" />
-                    {activo ? 'Ocultar agenda' : 'Ver agenda'}
+                    Ver agenda
                   </p>
                 </div>
               </button>
             )
           })}
         </div>
+      </div>
 
-        {seleccionado !== null && doctorSeleccionado && (
-          <div className="mt-6 overflow-hidden rounded-xl border border-zinc-200 shadow-sm">
-            <div className="flex items-center justify-between border-b border-zinc-100 bg-surface px-5 py-3">
+      {seleccionado !== null && doctorSeleccionado && (
+        <div
+          className="fixed inset-0 z-50 flex flex-col bg-black/50 p-0 sm:items-center sm:justify-center sm:p-4"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setSeleccionado(null)
+          }}
+        >
+          <div className="flex h-full w-full flex-col bg-white shadow-xl sm:h-[85vh] sm:max-w-2xl sm:rounded-xl">
+            <div className="flex flex-shrink-0 items-center justify-between border-b border-zinc-100 bg-surface px-5 py-3 sm:rounded-t-xl">
               <p className="text-sm font-medium text-primary">
                 Agenda de {doctorSeleccionado.nombre}
               </p>
               <button
                 onClick={() => setSeleccionado(null)}
-                className="rounded-md p-1 text-text/50 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                className="rounded-md p-1.5 text-text/50 transition-colors hover:bg-black/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
                 aria-label="Cerrar agenda"
               >
-                <X className="h-4 w-4" />
+                <X className="h-5 w-5" />
               </button>
             </div>
             <iframe
               src={AGENDAS[seleccionado]}
               title={`Agenda de turnos — ${doctorSeleccionado.nombre}`}
-              className="h-[640px] w-full"
-              loading="lazy"
+              className="w-full flex-1"
             />
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   )
 }
