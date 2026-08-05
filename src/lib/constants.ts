@@ -1,3 +1,2 @@
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://odontologiaintegralyestetica.com"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://odontologiasantiago.com"
