@@ -94,7 +94,7 @@ export default function AgendaTurno() {
             if (e.target === e.currentTarget) setSeleccionado(null)
           }}
         >
-          <div className="flex h-full w-full flex-col bg-white shadow-xl sm:h-[92vh] sm:max-w-3xl sm:rounded-xl">
+          <div className="flex h-full w-full flex-col bg-white shadow-xl sm:h-[96vh] sm:max-w-2xl sm:rounded-xl">
             <div className="flex flex-shrink-0 items-center justify-between border-b border-zinc-100 bg-surface px-5 py-3 sm:rounded-t-xl">
               <p className="text-sm font-medium text-primary">
                 Agenda de {doctorSeleccionado.nombre}
