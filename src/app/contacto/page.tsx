@@ -60,9 +60,7 @@ export default function ContactoPage() {
                     Matrícula {integrante.matricula}
                   </p>
                 )}
-                <p className="mt-1 text-sm text-text/70">
-                  {integrante.especialidad.split(",")[0]}
-                </p>
+                <p className="mt-1 text-sm text-text/70">Odontología general</p>
               </div>
             </div>
 
@@ -107,7 +105,7 @@ export default function ContactoPage() {
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-2">
-        <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm">
+        <div className="flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm">
           <div className="space-y-5 p-6">
             <div className="flex gap-4">
               <MapPin className="h-5 w-5 flex-shrink-0 text-primary" aria-hidden="true" />
@@ -134,7 +132,7 @@ export default function ContactoPage() {
             src={`https://www.google.com/maps?q=${encodeURIComponent(
               `${CONTACTO.direccion}, Argentina`
             )}&output=embed`}
-            className="h-72 w-full border-t border-zinc-200"
+            className="w-full flex-1 border-t border-zinc-200 min-h-72"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
