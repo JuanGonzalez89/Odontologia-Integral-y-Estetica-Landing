@@ -5,6 +5,7 @@ import { AlertTriangle, Award } from "lucide-react"
 import servicios from "@/lib/servicios"
 import equipo from "@/lib/equipo"
 import { whatsappUrl } from "@/lib/contacto"
+import AgendaTurno from "@/components/AgendaTurno"
 
 export const metadata: Metadata = {
   description:
@@ -193,6 +194,8 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+
+      <AgendaTurno />
 
       <section className="bg-primary py-16">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">

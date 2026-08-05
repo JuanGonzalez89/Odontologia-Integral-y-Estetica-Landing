@@ -3,6 +3,7 @@ import { MapPin, Clock, Mail, Phone, MessageCircle } from "lucide-react"
 import { CONTACTO, whatsappUrl } from "@/lib/contacto"
 import equipo from "@/lib/equipo"
 import ContactForm from "./ContactForm"
+import AgendaTurno from "@/components/AgendaTurno"
 
 export const metadata: Metadata = {
   title: "Contacto",
@@ -23,6 +24,8 @@ export default function ContactoPage() {
         Elegí la forma que te resulte más cómoda para comunicarte con
         nosotros. Te respondemos a la brevedad.
       </p>
+
+      <AgendaTurno />
 
       <div className="mt-8 grid gap-8 lg:grid-cols-2">
         <div className="space-y-6">
