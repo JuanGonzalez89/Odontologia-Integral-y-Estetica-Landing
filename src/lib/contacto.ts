@@ -1,8 +1,8 @@
 export const CONTACTO = {
   direccion: "Avellaneda 283 2do Piso, Santiago del Estero",
-  telefono: "(385) 688-8606",
-  telefonoSchema: "+5493856888606",
-  whatsapp: "5493856888606",
+  telefono: "(385) 310-2988",
+  telefonoSchema: "+5493853102988",
+  whatsapp: "5493853102988",
   email: "odontologiasgo@gmail.com",
   horarios: {
     dias: "Lunes a viernes",

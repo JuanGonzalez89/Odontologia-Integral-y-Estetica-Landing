@@ -22,8 +22,8 @@ const equipo: Integrante[] = [
     foto: "/images/gustavo-gonzalez.jpg",
     bio: "Soy odontólogo con 24 años de experiencia en el cuidado de la salud bucal en Santiago del Estero, ofreciendo una atención personalizada y de calidad para cada paciente. Mi enfoque está puesto en la prevención y el tratamiento integral de problemas dentales, combinando técnicas actualizadas con tecnología moderna para que cada visita sea lo más cómoda posible.",
     email: "doc.germangonzalez23@gmail.com",
-    telefono: "(385) 688-8606",
-    whatsapp: "5493856888606",
+    telefono: "(385) 310-2988",
+    whatsapp: "5493853102988",
   },
   {
     id: 2,
