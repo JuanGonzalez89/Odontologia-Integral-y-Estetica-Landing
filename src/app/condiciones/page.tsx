@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function CondicionesPage() {
   return (
-    <main className="mx-auto max-w-7xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
+    <main id="main-content" className="mx-auto max-w-7xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
       <nav aria-label="Breadcrumb" className="text-sm text-text/50">
         <Link href="/" className="hover:text-primary hover:underline">
           Inicio
@@ -36,7 +36,11 @@ export default function CondicionesPage() {
           <Link
             key={c.id}
             href={`/condiciones/${c.slug}`}
-            className="group relative rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
+            className={`group relative rounded-xl p-6 shadow-sm transition-shadow hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 ${
+              c.urgente
+                ? "border-2 border-red-200 bg-red-50/50"
+                : "border border-zinc-200 bg-white"
+            }`}
           >
             {c.urgente && (
               <span className="absolute -top-3 left-6 inline-flex items-center gap-1 rounded-full bg-red-600 px-3 py-0.5 text-xs font-semibold text-white">
@@ -44,8 +48,12 @@ export default function CondicionesPage() {
                 Consultá cuanto antes
               </span>
             )}
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-              <c.icono className="h-6 w-6 text-primary" />
+            <div
+              className={`flex h-12 w-12 items-center justify-center rounded-lg ${
+                c.urgente ? "bg-red-100" : "bg-primary/10"
+              }`}
+            >
+              <c.icono className={`h-6 w-6 ${c.urgente ? "text-red-600" : "text-primary"}`} />
             </div>
             <h2 className="mt-4 text-xl font-semibold text-primary group-hover:text-primary-light">
               {c.nombre}
