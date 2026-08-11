@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function SobreNosotrosPage() {
   return (
-    <main className="mx-auto max-w-5xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
+    <main id="main-content" className="mx-auto max-w-5xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
       <nav aria-label="Breadcrumb" className="text-sm text-text/50">
         <Link href="/" className="hover:text-primary hover:underline">
           Inicio
@@ -53,6 +53,7 @@ export default function SobreNosotrosPage() {
                 width={192}
                 height={192}
                 className="h-full w-full object-cover"
+                style={{ objectPosition: integrante.fotoPosicion ?? "center" }}
               />
             </div>
 
@@ -76,6 +77,10 @@ export default function SobreNosotrosPage() {
 
               <p className="mt-3 text-sm leading-relaxed text-text/70">
                 {integrante.especialidad}
+              </p>
+
+              <p className="mt-4 border-l-2 border-secondary pl-4 text-lg font-medium leading-snug text-primary">
+                {integrante.fraseDestacada}
               </p>
 
               <p className="mt-4 leading-relaxed text-text/80">

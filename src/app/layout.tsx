@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Plus_Jakarta_Sans, Manrope } from "next/font/google"
 import "./globals.css"
 import { SITE_URL } from "@/lib/constants"
 import { CONTACTO } from "@/lib/contacto"
@@ -10,13 +10,13 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import WhatsAppBubble from "@/components/WhatsAppBubble"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
 })
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 })
 
@@ -97,9 +97,12 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${jakarta.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <a href="#main-content" className="sr-only-link">
+          Saltar al contenido
+        </a>
         <Header />
         {children}
         <Footer />

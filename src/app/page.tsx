@@ -6,6 +6,7 @@ import servicios from "@/lib/servicios"
 import equipo from "@/lib/equipo"
 import { whatsappUrl } from "@/lib/contacto"
 import AgendaTurno from "@/components/AgendaTurno"
+import Testimonios from "@/components/Testimonios"
 
 export const metadata: Metadata = {
   description:
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <main>
+    <main id="main-content">
       <section className="relative overflow-hidden bg-primary text-white">
         <Image
           src="/images/consultorio-hero.jpg"
@@ -26,7 +27,7 @@ export default function HomePage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/70 sm:via-primary/80 sm:to-primary/25" />
         <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-start px-4 py-24 text-left sm:px-6 lg:px-8 lg:py-32">
           <span className="rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-secondary-light ring-1 ring-white/20">
             Santiago del Estero
@@ -115,27 +116,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-white py-12 text-center">
+      <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-primary sm:text-3xl">
-            ¿Tenés dolor o algún síntoma?
-          </h2>
-          <p className="mt-2 text-text/70">
-            Informate sobre las condiciones más comunes y cuándo consultar.
-          </p>
-          <div className="mx-auto mt-4 flex max-w-md items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-left text-sm text-red-800">
-            <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0" aria-hidden="true" />
-            <p>
-              Si tenés dolor intenso, hinchazón o fiebre, no esperes: puede
-              ser una urgencia.
-            </p>
+          <div className="overflow-hidden rounded-2xl border-2 border-red-100 bg-red-50/40 shadow-sm">
+            <div className="flex flex-col gap-6 p-8 sm:flex-row sm:items-center sm:p-10">
+              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-red-600 text-white">
+                <AlertTriangle className="h-7 w-7" aria-hidden="true" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-2xl font-bold text-primary sm:text-3xl">
+                  ¿Tenés dolor o algún síntoma?
+                </h2>
+                <p className="mt-2 text-text/70">
+                  Informate sobre las condiciones más comunes y cuándo consultar.
+                </p>
+                <p className="mt-3 text-sm font-semibold text-red-700">
+                  Si tenés dolor intenso, hinchazón o fiebre, no esperes: puede ser una urgencia.
+                </p>
+              </div>
+              <Link
+                href="/condiciones"
+                className="inline-flex flex-shrink-0 items-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
+              >
+                Ver condiciones y enfermedades
+              </Link>
+            </div>
           </div>
-          <Link
-            href="/condiciones"
-            className="mt-6 inline-flex items-center rounded-lg border border-secondary px-6 py-3 text-sm font-semibold text-primary shadow-sm transition-colors hover:bg-secondary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
-          >
-            Ver condiciones y enfermedades
-          </Link>
         </div>
       </section>
 
@@ -154,15 +160,16 @@ export default function HomePage() {
             {equipo.map((integrante) => (
               <div
                 key={integrante.id}
-                className="flex items-center gap-4 rounded-xl border border-zinc-200 bg-white p-5 shadow-sm"
+                className="flex items-center gap-4 rounded-xl bg-white p-5 shadow-sm ring-1 ring-primary/10"
               >
-                <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-full bg-zinc-100">
+                <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-full ring-2 ring-offset-2 ring-secondary/50">
                   <Image
                     src={integrante.foto}
                     alt={integrante.nombre}
                     width={80}
                     height={80}
                     className="h-full w-full object-cover"
+                    style={{ objectPosition: integrante.fotoPosicion ?? "center" }}
                   />
                 </div>
                 <div>
@@ -196,6 +203,8 @@ export default function HomePage() {
       </section>
 
       <AgendaTurno />
+
+      <Testimonios />
 
       <section className="bg-primary py-16">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">

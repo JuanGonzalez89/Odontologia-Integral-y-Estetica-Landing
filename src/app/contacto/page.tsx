@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function ContactoPage() {
   return (
-    <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
+    <main id="main-content" className="mx-auto w-full max-w-7xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
       <nav aria-label="Breadcrumb" className="text-sm text-text/50">
         <Link href="/" className="hover:text-primary hover:underline">
           Inicio
@@ -39,16 +39,17 @@ export default function ContactoPage() {
         {equipo.map((integrante) => (
           <div
             key={integrante.id}
-            className="flex flex-col rounded-xl border border-zinc-200 bg-white p-6 shadow-sm"
+            className="flex flex-col rounded-xl bg-white p-6 shadow-sm ring-1 ring-primary/10"
           >
             <div className="flex items-center gap-4">
-              <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-full bg-zinc-100">
+              <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-full ring-2 ring-offset-2 ring-secondary/50">
                 <Image
                   src={integrante.foto}
                   alt={integrante.nombre}
                   width={80}
                   height={80}
                   className="h-full w-full object-cover"
+                  style={{ objectPosition: integrante.fotoPosicion ?? "center" }}
                 />
               </div>
               <div className="min-w-0">
@@ -82,23 +83,23 @@ export default function ContactoPage() {
             </div>
 
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-              <AgendaModal
-                integranteId={integrante.id}
-                nombre={integrante.nombre}
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-secondary px-4 py-2.5 text-sm font-semibold text-text shadow-sm transition-colors hover:bg-secondary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
-              >
-                <Calendar className="h-4 w-4" aria-hidden="true" />
-                Agendar turno
-              </AgendaModal>
               <a
                 href={whatsappUrl(integrante.whatsapp)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-zinc-300 px-4 py-2.5 text-sm font-medium text-primary transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
+                className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-secondary px-4 py-2.5 text-sm font-semibold text-text shadow-sm transition-colors hover:bg-secondary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
                 WhatsApp
               </a>
+              <AgendaModal
+                integranteId={integrante.id}
+                nombre={integrante.nombre}
+                className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-zinc-300 px-4 py-2.5 text-sm font-medium text-primary transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
+              >
+                <Calendar className="h-4 w-4" aria-hidden="true" />
+                Agendar turno
+              </AgendaModal>
             </div>
           </div>
         ))}

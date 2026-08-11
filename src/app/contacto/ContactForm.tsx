@@ -189,7 +189,7 @@ export default function ContactForm() {
           type="tel"
           value={telefono}
           onChange={(e) => setTelefono(e.target.value)}
-          placeholder="(XXX) XXX-XXXX"
+          placeholder="385 XXX-XXXX"
           className="mt-1 block w-full rounded-lg border border-zinc-300 bg-white px-4 py-2.5 text-text placeholder:text-text/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
         />
       </div>

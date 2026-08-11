@@ -32,7 +32,7 @@ export default function Header() {
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="text-lg font-bold leading-tight tracking-tight text-white transition-colors hover:text-secondary-light sm:text-xl"
+            className="font-heading text-base font-bold leading-tight tracking-tight text-white transition-colors hover:text-secondary-light sm:text-lg lg:text-xl"
           >
             Odontología Integral <span className="text-secondary-light">y Estética</span>
           </Link>
@@ -93,7 +93,7 @@ export default function Header() {
                     onClick={cerrarMenu}
                     className={`flex min-h-[44px] items-center px-6 text-sm font-medium transition-colors ${
                       isActive
-                        ? "border-l-4 border-secondary-light text-white"
+                        ? "bg-white/10 text-white"
                         : "text-white/90 hover:text-secondary-light"
                     } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-inset`}
                   >

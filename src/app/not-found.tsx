@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function NotFoundPage() {
   return (
-    <main className="mx-auto flex max-w-2xl flex-1 flex-col items-center justify-center px-4 text-center">
+    <main id="main-content" className="mx-auto flex max-w-2xl flex-1 flex-col items-center justify-center px-4 text-center">
       <span className="text-6xl text-primary/20">404</span>
       <h1 className="mt-4 text-3xl font-bold tracking-tight text-primary sm:text-4xl">
         Página no encontrada

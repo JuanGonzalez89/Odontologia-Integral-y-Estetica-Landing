@@ -27,15 +27,16 @@ export default function AgendaTurno() {
               key={integrante.id}
               integranteId={integrante.id}
               nombre={integrante.nombre}
-              className="flex items-center gap-4 rounded-xl border-2 border-zinc-200 bg-white p-5 text-left shadow-sm transition-all hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
+              className="flex items-center gap-4 rounded-xl bg-white p-5 text-left shadow-sm ring-1 ring-primary/10 transition-all hover:shadow-md hover:ring-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
             >
-              <span className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-full bg-zinc-100">
+              <span className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-full ring-2 ring-offset-2 ring-secondary/50">
                 <Image
                   src={integrante.foto}
                   alt={integrante.nombre}
                   width={64}
                   height={64}
                   className="h-full w-full object-cover"
+                  style={{ objectPosition: integrante.fotoPosicion ?? "center" }}
                 />
               </span>
               <span className="min-w-0 flex-1">

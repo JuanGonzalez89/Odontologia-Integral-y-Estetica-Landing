@@ -36,11 +36,14 @@ export default async function ServicioDetallePage(props: {
 
   if (!servicio) notFound()
 
-  const startIndex = servicios.findIndex((s) => s.id === servicio.id)
-  const relacionados = Array.from(
-    { length: 3 },
-    (_, i) => servicios[(startIndex + 1 + i) % servicios.length]
-  )
+  const relacionados = servicios
+    .filter((s) => s.id !== servicio.id)
+    .sort((a, b) => {
+      const compartidoA = a.profesionales.some((p) => servicio.profesionales.includes(p)) ? 1 : 0
+      const compartidoB = b.profesionales.some((p) => servicio.profesionales.includes(p)) ? 1 : 0
+      return compartidoB - compartidoA
+    })
+    .slice(0, 3)
   const profesionales = equipo.filter((p) =>
     servicio.profesionales.includes(p.id)
   )
@@ -58,7 +61,7 @@ export default async function ServicioDetallePage(props: {
   }
 
   return (
-    <main className="mx-auto max-w-3xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
+    <main id="main-content" className="mx-auto max-w-3xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -79,9 +82,16 @@ export default async function ServicioDetallePage(props: {
       <div className="mt-6 flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
         <servicio.icono className="h-7 w-7 text-primary" />
       </div>
-      <h1 className="mt-4 text-3xl font-bold tracking-tight text-primary sm:text-4xl">
-        {servicio.nombre}
-      </h1>
+      <div className="mt-4 flex flex-wrap items-center gap-3">
+        <h1 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+          {servicio.nombre}
+        </h1>
+        {servicio.destacado && (
+          <span className="inline-flex items-center rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-white">
+            Más solicitado
+          </span>
+        )}
+      </div>
       <p className="mt-3 text-lg leading-relaxed text-text/80">
         {servicio.descripcionCorta}
       </p>
@@ -111,6 +121,7 @@ export default async function ServicioDetallePage(props: {
                     width={40}
                     height={40}
                     className="h-full w-full object-cover"
+                    style={{ objectPosition: p.fotoPosicion ?? "center" }}
                   />
                 </div>
                 <span className="text-sm font-medium text-primary group-hover:text-primary-light">
