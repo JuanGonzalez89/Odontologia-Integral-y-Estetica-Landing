@@ -9,6 +9,8 @@ import AgendaTurno from "@/components/AgendaTurno"
 import Testimonios from "@/components/Testimonios"
 import HeroVideo from "@/components/HeroVideo"
 import CasosAntesDespues from "@/components/CasosAntesDespues"
+import GaleriaConsultorio from "@/components/GaleriaConsultorio"
+import ObrasSociales from "@/components/ObrasSociales"
 
 export const metadata: Metadata = {
   description:
@@ -204,6 +206,14 @@ export default function HomePage() {
           >
             Conocé más sobre nosotros &rarr;
           </Link>
+        </div>
+      </section>
+
+      <GaleriaConsultorio />
+
+      <section className="bg-primary py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <ObrasSociales />
         </div>
       </section>
 

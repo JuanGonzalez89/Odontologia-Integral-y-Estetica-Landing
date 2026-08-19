@@ -6,6 +6,7 @@ import { CONTACTO, whatsappUrl } from "@/lib/contacto"
 import equipo from "@/lib/equipo"
 import ContactForm from "./ContactForm"
 import AgendaModal from "@/components/AgendaModal"
+import ObrasSociales from "@/components/ObrasSociales"
 
 export const metadata: Metadata = {
   title: "Contacto",
@@ -151,6 +152,10 @@ export default function ContactoPage() {
         </div>
 
         <ContactForm />
+      </div>
+
+      <div className="mt-6 rounded-xl bg-primary p-6">
+        <ObrasSociales />
       </div>
     </main>
   )
