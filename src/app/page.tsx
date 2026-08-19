@@ -7,6 +7,8 @@ import equipo from "@/lib/equipo"
 import { whatsappUrl } from "@/lib/contacto"
 import AgendaTurno from "@/components/AgendaTurno"
 import Testimonios from "@/components/Testimonios"
+import HeroVideo from "@/components/HeroVideo"
+import CasosAntesDespues from "@/components/CasosAntesDespues"
 
 export const metadata: Metadata = {
   description:
@@ -21,13 +23,14 @@ export default function HomePage() {
     <main id="main-content">
       <section className="relative overflow-hidden bg-primary text-white">
         <Image
-          src="/images/consultorio-hero.jpg"
-          alt="Consultorio de Odontología Integral y Estética en Santiago del Estero"
+          src="/images/hero-video-poster.jpg"
+          alt="Paciente sonriendo tras un tratamiento en Odontología Integral y Estética, Santiago del Estero"
           fill
-          className="object-cover"
+          className="object-cover object-[50%_30%]"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/70 sm:via-primary/80 sm:to-primary/25" />
+        <HeroVideo />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/65 to-primary/30 sm:via-primary/55 sm:to-primary/15" />
         <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-start px-4 py-24 text-left sm:px-6 lg:px-8 lg:py-32">
           <span className="rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-secondary-light ring-1 ring-white/20">
             Santiago del Estero
@@ -115,6 +118,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <CasosAntesDespues />
 
       <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
