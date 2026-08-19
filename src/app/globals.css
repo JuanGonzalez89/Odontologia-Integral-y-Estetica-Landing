@@ -42,3 +42,12 @@ h1, h2, h3, h4 {
 .sr-only-link:focus {
   left: 0;
 }
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
