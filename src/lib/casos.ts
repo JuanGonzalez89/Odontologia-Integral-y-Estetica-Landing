@@ -30,6 +30,18 @@ const casos: Caso[] = [
       alt: "Dentadura después de la reconstrucción, completa y pareja",
     },
   },
+  {
+    id: 3,
+    titulo: "Prótesis parcial",
+    antes: {
+      src: "/images/casos/Protesis-parcial-antes.jpg",
+      alt: "Dentadura antes de la colocación de la prótesis parcial, con piezas faltantes",
+    },
+    despues: {
+      src: "/images/casos/Protesis-parcial-despues.jpg",
+      alt: "Dentadura después de la colocación de la prótesis parcial, completa",
+    },
+  },
 ]
 
 export default casos

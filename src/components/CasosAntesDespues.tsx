@@ -12,7 +12,7 @@ export default function CasosAntesDespues() {
           Resultados reales de nuestros pacientes. Deslizá para comparar.
         </p>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+        <div className="mt-8 grid gap-6 sm:grid-cols-3">
           {casos.map((caso) => (
             <BeforeAfterSlider
               key={caso.id}

@@ -86,7 +86,7 @@ export default function BeforeAfterSlider({
           src={after.src}
           alt={after.alt}
           fill
-          sizes="(min-width: 1024px) 40vw, 90vw"
+          sizes="(min-width: 640px) 32vw, 90vw"
           className="pointer-events-none object-cover"
         />
 
@@ -98,7 +98,7 @@ export default function BeforeAfterSlider({
             src={before.src}
             alt={before.alt}
             fill
-            sizes="(min-width: 1024px) 40vw, 90vw"
+            sizes="(min-width: 640px) 32vw, 90vw"
             className="object-cover"
           />
         </div>
