@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import servicios from "@/lib/servicios"
+import { breadcrumbJsonLd } from "@/lib/schema"
+import JsonLd from "@/components/JsonLd"
 
 export const metadata: Metadata = {
-  title: "Servicios",
+  title: "Servicios odontológicos en Santiago del Estero",
   description:
     "Conocé todos los tratamientos que ofrecemos: odontopediatría, prótesis, blanqueamiento, cirugía odontológica, endodoncia, limpieza dental, radiografías, reconstrucción dental y odontología general.",
   alternates: {
@@ -14,6 +16,13 @@ export const metadata: Metadata = {
 export default function ServiciosPage() {
   return (
     <main id="main-content" className="mx-auto max-w-7xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { nombre: "Inicio", url: "/" },
+          { nombre: "Servicios" },
+        ])}
+      />
+
       <nav aria-label="Breadcrumb" className="text-sm text-text/50">
         <Link href="/" className="hover:text-primary hover:underline">
           Inicio
@@ -23,7 +32,7 @@ export default function ServiciosPage() {
       </nav>
 
       <h1 className="mt-2 text-3xl font-bold tracking-tight text-primary sm:text-4xl">
-        Servicios
+        Servicios odontológicos
       </h1>
       <p className="mt-2 text-text/70">
         Conocé todos los tratamientos que ofrecemos para cuidar tu sonrisa.

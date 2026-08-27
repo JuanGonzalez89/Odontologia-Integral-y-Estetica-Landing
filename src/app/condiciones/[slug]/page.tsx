@@ -4,6 +4,9 @@ import Link from "next/link"
 import { AlertTriangle } from "lucide-react"
 import condiciones, { getCondicionBySlug } from "@/lib/condiciones"
 import { whatsappUrl } from "@/lib/contacto"
+import { SITE_URL } from "@/lib/constants"
+import { breadcrumbJsonLd, clinicaRef } from "@/lib/schema"
+import JsonLd from "@/components/JsonLd"
 
 export async function generateStaticParams() {
   return condiciones.map((c) => ({ slug: c.slug }))
@@ -18,7 +21,7 @@ export async function generateMetadata(props: {
   if (!condicion) return {}
 
   return {
-    title: condicion.nombre,
+    title: `${condicion.nombre}: causas y tratamiento`,
     description: condicion.descripcionCorta,
     alternates: {
       canonical: `/condiciones/${condicion.slug}`,
@@ -38,8 +41,33 @@ export default async function CondicionDetallePage(props: {
     .filter((c) => c.id !== condicion.id)
     .slice(0, 3)
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    name: condicion.nombre,
+    description: condicion.descripcionCorta,
+    url: `${SITE_URL}/condiciones/${condicion.slug}`,
+    inLanguage: "es-AR",
+    about: {
+      "@type": "MedicalCondition",
+      name: condicion.nombre,
+      description: condicion.descripcionCorta,
+    },
+    publisher: clinicaRef,
+    reviewedBy: clinicaRef,
+  }
+
+  const breadcrumb = breadcrumbJsonLd([
+    { nombre: "Inicio", url: "/" },
+    { nombre: "Condiciones", url: "/condiciones" },
+    { nombre: condicion.nombre },
+  ])
+
   return (
     <main id="main-content" className="mx-auto max-w-3xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
+      <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumb} />
+
       <nav aria-label="Breadcrumb" className="text-sm text-text/50">
         <Link href="/" className="hover:text-primary hover:underline">
           Inicio

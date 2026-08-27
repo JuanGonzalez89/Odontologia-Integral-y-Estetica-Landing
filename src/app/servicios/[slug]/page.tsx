@@ -6,6 +6,8 @@ import servicios, { getServicioBySlug } from "@/lib/servicios"
 import equipo from "@/lib/equipo"
 import { whatsappUrl } from "@/lib/contacto"
 import { SITE_URL } from "@/lib/constants"
+import { breadcrumbJsonLd, clinicaRef, profesionalRef } from "@/lib/schema"
+import JsonLd from "@/components/JsonLd"
 
 export async function generateStaticParams() {
   return servicios.map((s) => ({ slug: s.slug }))
@@ -20,7 +22,7 @@ export async function generateMetadata(props: {
   if (!servicio) return {}
 
   return {
-    title: servicio.nombre,
+    title: `${servicio.nombre} en Santiago del Estero`,
     description: servicio.descripcionCorta,
     alternates: {
       canonical: `/servicios/${servicio.slug}`,
@@ -53,19 +55,23 @@ export default async function ServicioDetallePage(props: {
     "@type": "MedicalProcedure",
     name: servicio.nombre,
     description: servicio.descripcionCorta,
-    provider: {
-      "@type": "Dentist",
-      name: "Odontología Integral y Estética",
-      url: SITE_URL,
-    },
+    url: `${SITE_URL}/servicios/${servicio.slug}`,
+    provider: clinicaRef,
+    ...(profesionales.length > 0 && {
+      performer: profesionales.map(profesionalRef),
+    }),
   }
+
+  const breadcrumb = breadcrumbJsonLd([
+    { nombre: "Inicio", url: "/" },
+    { nombre: "Servicios", url: "/servicios" },
+    { nombre: servicio.nombre },
+  ])
 
   return (
     <main id="main-content" className="mx-auto max-w-3xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumb} />
 
       <nav aria-label="Breadcrumb" className="text-sm text-text/50">
         <Link href="/" className="hover:text-primary hover:underline">

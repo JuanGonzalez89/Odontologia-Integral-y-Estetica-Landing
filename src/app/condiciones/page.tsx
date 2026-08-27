@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { AlertTriangle } from "lucide-react"
 import condiciones from "@/lib/condiciones"
+import { breadcrumbJsonLd } from "@/lib/schema"
+import JsonLd from "@/components/JsonLd"
 
 export const metadata: Metadata = {
   title: "Condiciones y enfermedades bucales",
@@ -15,6 +17,13 @@ export const metadata: Metadata = {
 export default function CondicionesPage() {
   return (
     <main id="main-content" className="mx-auto max-w-7xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { nombre: "Inicio", url: "/" },
+          { nombre: "Condiciones" },
+        ])}
+      />
+
       <nav aria-label="Breadcrumb" className="text-sm text-text/50">
         <Link href="/" className="hover:text-primary hover:underline">
           Inicio

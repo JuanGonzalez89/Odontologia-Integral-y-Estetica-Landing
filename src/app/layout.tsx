@@ -3,12 +3,14 @@ import { Plus_Jakarta_Sans, Manrope } from "next/font/google"
 import "./globals.css"
 import { SITE_URL } from "@/lib/constants"
 import { CONTACTO } from "@/lib/contacto"
+import { CLINICA_ID, GOOGLE_MAPS_URL, profesionalId } from "@/lib/schema"
 import equipo from "@/lib/equipo"
 import servicios from "@/lib/servicios"
 
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import WhatsAppBubble from "@/components/WhatsAppBubble"
+import JsonLd from "@/components/JsonLd"
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -23,7 +25,7 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Odontología Integral y Estética",
+    default: "Odontólogos en Santiago del Estero | Odontología Integral y Estética",
     template: "%s | Odontología Integral y Estética",
   },
   description:
@@ -44,18 +46,28 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Dentist",
+  "@id": CLINICA_ID,
   name: "Odontología Integral y Estética",
   description: "Servicios odontológicos profesionales en Santiago del Estero.",
   url: SITE_URL,
   telephone: CONTACTO.telefonoSchema,
   email: CONTACTO.email,
+  image: `${SITE_URL}/images/consultorio-hero.jpg`,
   address: {
     "@type": "PostalAddress",
     streetAddress: "Avellaneda 283, 2do Piso",
     addressLocality: "Santiago del Estero",
     addressRegion: "Santiago del Estero",
+    postalCode: "G4202AHE",
     addressCountry: "AR",
   },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: -27.7872915,
+    longitude: -64.2578568,
+  },
+  hasMap: GOOGLE_MAPS_URL,
+  sameAs: [GOOGLE_MAPS_URL],
   areaServed: {
     "@type": "City",
     name: "Santiago del Estero",
@@ -79,9 +91,9 @@ const jsonLd = {
       closes: "20:30",
     },
   ],
-  priceRange: "$$",
   employee: equipo.map((p) => ({
     "@type": "Person",
+    "@id": profesionalId(p),
     name: p.nombre,
     jobTitle: "Odontólogo/a",
     email: p.email,
@@ -107,10 +119,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <WhatsAppBubble />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={jsonLd} />
       </body>
     </html>
   )

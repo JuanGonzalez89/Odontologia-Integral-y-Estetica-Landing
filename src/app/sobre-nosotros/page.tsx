@@ -4,9 +4,11 @@ import Link from "next/link"
 import { Award, BadgeCheck, Mail, MessageCircle } from "lucide-react"
 import equipo from "@/lib/equipo"
 import { whatsappUrl } from "@/lib/contacto"
+import { breadcrumbJsonLd } from "@/lib/schema"
+import JsonLd from "@/components/JsonLd"
 
 export const metadata: Metadata = {
-  title: "Sobre nosotros",
+  title: "Nuestro equipo de odontólogos",
   description:
     "Conocé al equipo de odontólogos del consultorio en Santiago del Estero: Gustavo Germán González y María Verónica González, con más de 20 años de experiencia.",
   alternates: {
@@ -17,6 +19,13 @@ export const metadata: Metadata = {
 export default function SobreNosotrosPage() {
   return (
     <main id="main-content" className="mx-auto max-w-5xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { nombre: "Inicio", url: "/" },
+          { nombre: "Sobre nosotros" },
+        ])}
+      />
+
       <nav aria-label="Breadcrumb" className="text-sm text-text/50">
         <Link href="/" className="hover:text-primary hover:underline">
           Inicio

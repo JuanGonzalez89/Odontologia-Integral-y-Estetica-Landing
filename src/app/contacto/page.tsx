@@ -4,12 +4,14 @@ import Link from "next/link"
 import { MapPin, Clock, Mail, Phone, MessageCircle, Calendar } from "lucide-react"
 import { CONTACTO, whatsappUrl } from "@/lib/contacto"
 import equipo from "@/lib/equipo"
+import { breadcrumbJsonLd } from "@/lib/schema"
+import JsonLd from "@/components/JsonLd"
 import ContactForm from "./ContactForm"
 import AgendaModal from "@/components/AgendaModal"
 import ObrasSociales from "@/components/ObrasSociales"
 
 export const metadata: Metadata = {
-  title: "Contacto",
+  title: "Turnos y contacto en Santiago del Estero",
   description:
     "Comunicate con Odontología Integral y Estética: dirección, teléfono, email y formulario de contacto.",
   alternates: {
@@ -20,6 +22,13 @@ export const metadata: Metadata = {
 export default function ContactoPage() {
   return (
     <main id="main-content" className="mx-auto w-full max-w-7xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { nombre: "Inicio", url: "/" },
+          { nombre: "Contacto" },
+        ])}
+      />
+
       <nav aria-label="Breadcrumb" className="text-sm text-text/50">
         <Link href="/" className="hover:text-primary hover:underline">
           Inicio
