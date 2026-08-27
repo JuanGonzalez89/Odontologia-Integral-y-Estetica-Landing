@@ -43,6 +43,15 @@ h1, h2, h3, h4 {
   left: 0;
 }
 
+/*
+ * Chevron de las preguntas frecuentes. Va en CSS plano porque Tailwind v4 no
+ * genera la utilidad de rotación bajo variante (`group-open:` ni `[[open]_&]:`)
+ * en este proyecto.
+ */
+details[open] .faq-chevron {
+  rotate: 180deg;
+}
+
 @keyframes marquee-right {
   from {
     transform: translateX(-50%);

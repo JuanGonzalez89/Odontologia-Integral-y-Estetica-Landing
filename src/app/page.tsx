@@ -11,6 +11,7 @@ import HeroVideo from "@/components/HeroVideo"
 import CasosAntesDespues from "@/components/CasosAntesDespues"
 import GaleriaConsultorio from "@/components/GaleriaConsultorio"
 import ObrasSociales from "@/components/ObrasSociales"
+import PreguntasFrecuentes from "@/components/PreguntasFrecuentes"
 
 export const metadata: Metadata = {
   description:
@@ -220,6 +221,8 @@ export default function HomePage() {
       <AgendaTurno />
 
       <Testimonios />
+
+      <PreguntasFrecuentes />
 
       <section className="bg-primary py-16">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
