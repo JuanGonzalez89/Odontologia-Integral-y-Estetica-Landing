@@ -21,7 +21,7 @@ const equipo: Integrante[] = [
     matricula: "MP 385",
     experiencia: 24,
     especialidad:
-      "Odontopediatría, prótesis, blanqueamiento y cirugía odontológica",
+      "Odontología general, odontopediatría, prótesis, blanqueamiento y cirugía odontológica",
     foto: "/images/gustavo-gonzalez.jpg",
     fotoPosicion: "78% 38%",
     fraseDestacada:

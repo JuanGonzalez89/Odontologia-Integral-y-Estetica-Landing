@@ -22,8 +22,8 @@ export default function ObrasSociales({ className = "" }: ObrasSocialesProps) {
       <h2 className="text-2xl font-bold text-white sm:text-3xl">
         Trabajamos con tu obra social
       </h2>
-      <p className="mt-2 max-w-2xl text-white/90">
-        Consultanos por WhatsApp la cobertura específica de tu tratamiento.
+      <p className="mt-3 max-w-3xl leading-relaxed text-white/90">
+        Atendemos {listado}. Si no ves la tuya, consultanos igual por WhatsApp.
       </p>
 
       <div
@@ -49,10 +49,6 @@ export default function ObrasSociales({ className = "" }: ObrasSocialesProps) {
           ))}
         </div>
       </div>
-
-      <p className="mt-6 max-w-3xl text-sm leading-relaxed text-white/90">
-        Atendemos {listado}. Si no ves la tuya, consultanos igual por WhatsApp.
-      </p>
     </div>
   )
 }

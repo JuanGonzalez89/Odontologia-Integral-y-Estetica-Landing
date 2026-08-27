@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { AlertTriangle, Award } from "lucide-react"
 import servicios from "@/lib/servicios"
+import condiciones from "@/lib/condiciones"
 import equipo from "@/lib/equipo"
 import { whatsappUrl } from "@/lib/contacto"
 import AgendaTurno from "@/components/AgendaTurno"
@@ -126,29 +127,63 @@ export default function HomePage() {
 
       <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="overflow-hidden rounded-2xl border-2 border-red-100 bg-red-50/40 shadow-sm">
-            <div className="flex flex-col gap-6 p-8 sm:flex-row sm:items-center sm:p-10">
-              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-red-600 text-white">
-                <AlertTriangle className="h-7 w-7" aria-hidden="true" />
-              </div>
-              <div className="flex-1">
-                <h2 className="text-2xl font-bold text-primary sm:text-3xl">
-                  ¿Tenés dolor o algún síntoma?
-                </h2>
-                <p className="mt-2 text-text/70">
-                  Informate sobre las condiciones más comunes y cuándo consultar.
-                </p>
-                <p className="mt-3 text-sm font-semibold text-red-700">
-                  Si tenés dolor intenso, hinchazón o fiebre, no esperes: puede ser una urgencia.
-                </p>
-              </div>
-              <Link
-                href="/condiciones"
-                className="inline-flex flex-shrink-0 items-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
-              >
-                Ver condiciones y enfermedades
-              </Link>
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
+            <div>
+              <h2 className="text-2xl font-bold text-primary sm:text-3xl">
+                ¿Tenés dolor o alguna molestia?
+              </h2>
+              <p className="mt-2 max-w-2xl text-text/70">
+                Informate sobre las consultas más frecuentes y cuándo conviene
+                que nos veas.
+              </p>
             </div>
+
+            <p className="flex items-start gap-3 rounded-xl bg-surface p-4 text-sm leading-relaxed text-text/80 lg:max-w-sm lg:flex-shrink-0">
+              <AlertTriangle
+                className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary"
+                aria-hidden="true"
+              />
+              <span>
+                Si tenés dolor intenso, hinchazón o fiebre,{" "}
+                <Link
+                  href={whatsappUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-primary underline underline-offset-2 hover:text-primary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
+                >
+                  escribinos por WhatsApp
+                </Link>
+                : puede ser una urgencia.
+              </span>
+            </p>
+          </div>
+
+          <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            {condiciones.map((c) => (
+              <Link
+                key={c.id}
+                href={`/condiciones/${c.slug}`}
+                className="group relative rounded-xl border border-zinc-200 bg-surface p-4 shadow-sm transition-shadow hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 sm:p-5"
+              >
+                {c.urgente && (
+                  <span className="absolute right-0 top-0 rounded-bl-lg rounded-tr-xl bg-red-600 px-2.5 py-1 text-xs font-semibold text-white">
+                    Urgente
+                  </span>
+                )}
+                <c.icono className="h-6 w-6 text-primary" />
+                <h3 className="mt-3 font-semibold text-primary group-hover:text-primary-light">
+                  {c.nombre}
+                </h3>
+                {/*
+                  En móvil la tarjeta mide ~160px: ahí una descripción recortada
+                  no aporta nada, y ocho tarjetas con texto hacían que la
+                  sección ocupara más de dos pantallas de scroll.
+                */}
+                <p className="mt-1 text-sm leading-relaxed text-text/70 line-clamp-3 max-sm:hidden">
+                  {c.descripcionCorta}
+                </p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
