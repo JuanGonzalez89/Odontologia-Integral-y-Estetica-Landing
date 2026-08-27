@@ -10,12 +10,19 @@ export default function ObrasSociales({ className = "" }: ObrasSocialesProps) {
   // (el desplazamiento del 50% cae justo al final de un ciclo completo).
   const pista = [...obrasSociales, ...obrasSociales]
 
+  // Los logos son imágenes: sin esta línea, los nombres de las obras sociales
+  // no existen como texto para los buscadores ni para los asistentes de IA.
+  const listado = new Intl.ListFormat("es-AR", {
+    style: "long",
+    type: "conjunction",
+  }).format(obrasSociales.map((o) => o.nombre))
+
   return (
     <div className={className}>
       <h2 className="text-2xl font-bold text-white sm:text-3xl">
         Trabajamos con tu obra social
       </h2>
-      <p className="mt-2 max-w-2xl text-white/80">
+      <p className="mt-2 max-w-2xl text-white/90">
         Consultanos por WhatsApp la cobertura específica de tu tratamiento.
       </p>
 
@@ -42,6 +49,10 @@ export default function ObrasSociales({ className = "" }: ObrasSocialesProps) {
           ))}
         </div>
       </div>
+
+      <p className="mt-6 max-w-3xl text-sm leading-relaxed text-white/90">
+        Atendemos {listado}. Si no ves la tuya, consultanos igual por WhatsApp.
+      </p>
     </div>
   )
 }
