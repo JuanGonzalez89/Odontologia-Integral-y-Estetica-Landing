@@ -13,7 +13,7 @@ import ObrasSociales from "@/components/ObrasSociales"
 export const metadata: Metadata = {
   title: "Turnos y contacto en Santiago del Estero",
   description:
-    "Comunicate con Odontología Integral y Estética: dirección, teléfono, email y formulario de contacto.",
+    "Pedí tu turno en Avellaneda 283, Santiago del Estero. Atendemos de lunes a viernes, mañana y tarde. Escribinos por WhatsApp o dejanos tu consulta.",
   alternates: {
     canonical: "/contacto",
   },

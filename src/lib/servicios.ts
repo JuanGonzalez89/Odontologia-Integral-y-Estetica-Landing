@@ -16,6 +16,12 @@ export interface Servicio {
   slug: string
   nombre: string
   descripcionCorta: string
+  /**
+   * Texto para el resultado de búsqueda de Google, cuando `descripcionCorta`
+   * queda por debajo de los ~110 caracteres que conviene aprovechar ahí.
+   * No se muestra en la página.
+   */
+  metaDescripcion?: string
   descripcionLarga: string
   icono: ComponentType<{ className?: string }>
   destacado?: boolean
@@ -52,6 +58,8 @@ const servicios: Servicio[] = [
     nombre: "Blanqueamiento dental",
     descripcionCorta:
       "Aclarado profesional del color dental con técnicas seguras y supervisadas, para una sonrisa más luminosa.",
+    metaDescripcion:
+      "Blanqueamiento dental en Santiago del Estero: aclaramos el color de tus dientes con técnicas seguras y supervisadas. Pedí tu turno por WhatsApp.",
     descripcionLarga:
       "Con el paso del tiempo, los dientes tienden a oscurecerse por factores como la alimentación, el consumo de café, té o tabaco, y el propio envejecimiento. El blanqueamiento dental profesional permite aclarar el tono del esmalte de forma segura y controlada.\n\nA diferencia de los productos de venta libre, el blanqueamiento supervisado por un odontólogo garantiza que se utilicen las concentraciones adecuadas y que el tejido bucal esté protegido durante todo el proceso. Esto minimiza riesgos y maximiza resultados.\n\nEl tratamiento se adapta a cada paciente: podemos realizar sesiones en el consultorio con resultados visibles en poco tiempo, o pautar un protocolo combinado para quienes buscan mayor comodidad. En todos los casos, el seguimiento profesional es clave para mantener una sonrisa luminosa por más tiempo.",
     icono: Sparkles,
@@ -86,6 +94,8 @@ const servicios: Servicio[] = [
     nombre: "Limpieza dental",
     descripcionCorta:
       "Eliminación profesional de placa y sarro para mantener encías sanas y prevenir enfermedades bucales.",
+    metaDescripcion:
+      "Limpieza dental en Santiago del Estero: eliminamos placa y sarro para mantener tus encías sanas y prevenir caries. Atendemos obras sociales.",
     descripcionLarga:
       "La limpieza dental profesional, también llamada profilaxis, es un procedimiento fundamental para mantener una boca sana más allá del cepillado diario. Aunque la higiene en casa sea cuidadosa, la placa bacteriana se acumula en zonas de difícil acceso y termina endureciéndose formando sarro, que solo puede ser eliminado con instrumentos profesionales.\n\nDurante la limpieza, eliminamos el sarro de la superficie de los dientes y por debajo de la línea de encía, donde el cepillo no llega. Luego pulimos las piezas para dejar una superficie lisa que dificulte la nueva acumulación de placa. Es un procedimiento rápido, indoloro y con resultados visibles: los dientes lucen más limpios y brillantes.\n\nRecomendamos realizar una limpieza profesional al menos una vez al año, aunque la frecuencia ideal depende de cada paciente. Además de mejorar la estética de la sonrisa, este hábito previene enfermedades como gingivitis y periodontitis, que pueden tener consecuencias más serias si no se tratan a tiempo.",
     icono: Sparkle,
@@ -97,6 +107,8 @@ const servicios: Servicio[] = [
     nombre: "Radiografías dentales",
     descripcionCorta:
       "Estudios radiográficos para un diagnóstico preciso y una planificación de tratamiento más segura.",
+    metaDescripcion:
+      "Radiografías dentales en Santiago del Estero para un diagnóstico preciso y una planificación de tratamiento más segura. Consultanos por WhatsApp.",
     descripcionLarga:
       "Las radiografías dentales son una herramienta indispensable en la odontología moderna. Permiten ver lo que el ojo no puede detectar en un examen clínico convencional: caries entre los dientes, infecciones en la raíz, quistes, dientes retenidos, pérdida ósea y la posición de las muelas del juicio, entre otras condiciones.\n\nContamos con equipos de radiografía digital que reducen significativamente la exposición a la radiación en comparación con las radiografías tradicionales. Las imágenes se obtienen al instante, lo que agiliza el diagnóstico y nos permite explicarle al paciente lo que vemos en el momento, favoreciendo la comprensión y la toma de decisiones compartida.\n\nRealizamos los estudios radiográficos que cada caso requiere, desde radiografías periapicales de sectores específicos hasta panorámicas que brindan una visión completa de la boca. Tener un diagnóstico preciso es el primer paso para un tratamiento seguro y efectivo.",
     icono: ScanLine,

@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     template: "%s | Odontología Integral y Estética",
   },
   description:
-    "Servicios odontológicos profesionales en Santiago del Estero. Odontopediatría, prótesis, blanqueamiento, cirugía, endodoncia, limpieza, radiografías, reconstrucción dental y odontología general.",
+    "Consultorio odontológico en Santiago del Estero con más de 20 años de experiencia. Odontopediatría, prótesis, blanqueamiento y más. Atendemos obras sociales.",
   alternates: {
     canonical: "/",
   },

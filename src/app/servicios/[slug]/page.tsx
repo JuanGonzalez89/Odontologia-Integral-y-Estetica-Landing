@@ -23,7 +23,7 @@ export async function generateMetadata(props: {
 
   return {
     title: `${servicio.nombre} en Santiago del Estero`,
-    description: servicio.descripcionCorta,
+    description: servicio.metaDescripcion ?? servicio.descripcionCorta,
     alternates: {
       canonical: `/servicios/${servicio.slug}`,
     },

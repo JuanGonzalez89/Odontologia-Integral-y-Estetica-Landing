@@ -7,7 +7,7 @@ import JsonLd from "@/components/JsonLd"
 export const metadata: Metadata = {
   title: "Servicios odontológicos en Santiago del Estero",
   description:
-    "Conocé todos los tratamientos que ofrecemos: odontopediatría, prótesis, blanqueamiento, cirugía odontológica, endodoncia, limpieza dental, radiografías, reconstrucción dental y odontología general.",
+    "Odontopediatría, prótesis, blanqueamiento, cirugía, endodoncia, limpieza dental y radiografías en Santiago del Estero. Conocé todos nuestros tratamientos.",
   alternates: {
     canonical: "/servicios",
   },
