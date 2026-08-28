@@ -7,7 +7,9 @@ import equipo from "@/lib/equipo"
 import { whatsappUrl } from "@/lib/contacto"
 import { SITE_URL } from "@/lib/constants"
 import { breadcrumbJsonLd, clinicaRef, profesionalRef } from "@/lib/schema"
+import faqServicios from "@/lib/faq-servicios"
 import JsonLd from "@/components/JsonLd"
+import PreguntasFrecuentes from "@/components/PreguntasFrecuentes"
 
 export async function generateStaticParams() {
   return servicios.map((s) => ({ slug: s.slug }))
@@ -67,6 +69,8 @@ export default async function ServicioDetallePage(props: {
     { nombre: "Servicios", url: "/servicios" },
     { nombre: servicio.nombre },
   ])
+
+  const preguntas = faqServicios[servicio.slug] ?? []
 
   return (
     <main id="main-content" className="mx-auto max-w-3xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
@@ -137,6 +141,10 @@ export default async function ServicioDetallePage(props: {
             ))}
           </div>
         </div>
+      )}
+
+      {preguntas.length > 0 && (
+        <PreguntasFrecuentes preguntas={preguntas} className="mt-10" />
       )}
 
       <div className="mt-8 rounded-xl bg-surface p-6 text-center">

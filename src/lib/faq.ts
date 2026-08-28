@@ -28,23 +28,35 @@ const preguntas: Pregunta[] = [
   },
   {
     id: 2,
+    pregunta: "¿Cómo pido un turno y cuánto tardan en responder?",
+    respuesta:
+      "Escribinos por WhatsApp y te contestamos enseguida: normalmente en unos 15 minutos y como mucho dentro de la hora, apenas el odontólogo puede revisar la agenda. Atendemos con turno, así que conviene coordinarlo antes de venir.",
+  },
+  {
+    id: 3,
     pregunta: "¿Dónde queda el consultorio y qué horarios tienen?",
     respuesta: `Estamos en ${CONTACTO.direccion}. Atendemos de ${CONTACTO.horarios.dias.toLowerCase()}, de ${enPalabras(CONTACTO.horarios.manana)} y de ${enPalabras(CONTACTO.horarios.tarde)}.`,
   },
   {
-    id: 3,
+    id: 4,
+    pregunta: "¿Cómo se puede pagar?",
+    respuesta:
+      "Aceptamos efectivo y transferencia bancaria. Por el momento no trabajamos con tarjeta de débito ni de crédito.",
+  },
+  {
+    id: 5,
     pregunta: "¿Atienden urgencias?",
     respuesta:
       "Sí. Si tenés dolor intenso, hinchazón o fiebre, escribinos por WhatsApp y te damos un turno lo antes posible dentro de nuestro horario de atención.",
   },
   {
-    id: 4,
+    id: 6,
     pregunta: "¿Cuánto cuesta un tratamiento?",
     respuesta:
       "Los valores dependen del tratamiento y de cada caso en particular, por eso no manejamos una lista de precios fija. Escribinos por WhatsApp contándonos qué necesitás y te pasamos el presupuesto.",
   },
   {
-    id: 5,
+    id: 7,
     pregunta: "¿Desde qué edad atienden niños?",
     respuesta:
       "Atendemos niños a partir de los 6 años. Hacemos odontopediatría: la consulta está pensada para que los más chicos vivan la visita al dentista con tranquilidad y sin miedo, y para acompañarlos en el cuidado de sus dientes desde temprano.",

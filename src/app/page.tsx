@@ -6,6 +6,7 @@ import servicios from "@/lib/servicios"
 import condiciones from "@/lib/condiciones"
 import equipo from "@/lib/equipo"
 import { whatsappUrl } from "@/lib/contacto"
+import preguntas from "@/lib/faq"
 import AgendaTurno from "@/components/AgendaTurno"
 import Testimonios from "@/components/Testimonios"
 import HeroVideo from "@/components/HeroVideo"
@@ -257,7 +258,14 @@ export default function HomePage() {
 
       <Testimonios />
 
-      <PreguntasFrecuentes />
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <PreguntasFrecuentes
+            preguntas={preguntas}
+            subtitulo="Las consultas que más nos hacen antes del primer turno."
+          />
+        </div>
+      </section>
 
       <section className="bg-primary py-16">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
