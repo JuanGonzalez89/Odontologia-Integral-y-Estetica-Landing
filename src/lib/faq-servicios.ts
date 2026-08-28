@@ -159,6 +159,12 @@ const faqServicios: Record<string, Pregunta[]> = {
   "odontologia-general": [
     {
       id: 1,
+      pregunta: "¿Qué incluye una consulta de control?",
+      respuesta:
+        "Hacemos un diagnóstico completo de la boca, tanto de los tejidos blandos (encías, lengua, mejillas) como de los duros (dientes y hueso). Con eso armamos un plan de tratamiento con distintas alternativas y presupuestos, para que puedas evaluarlo y definir juntos el orden de prioridades.",
+    },
+    {
+      id: 2,
       pregunta: "¿Cada cuánto hay que hacerse un control si no duele nada?",
       respuesta:
         "Una vez al año como mínimo, y lo ideal son seis meses. Si venís cuando ya duele, llegamos tarde y el arreglo termina siendo más caro y más invasivo. La odontología moderna es pura prevención.",
