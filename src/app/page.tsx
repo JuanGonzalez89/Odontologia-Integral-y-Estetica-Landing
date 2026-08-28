@@ -16,7 +16,7 @@ import PreguntasFrecuentes from "@/components/PreguntasFrecuentes"
 
 export const metadata: Metadata = {
   description:
-    "Cuidamos tu sonrisa con atención profesional, calidez y compromiso. Odontopediatría, prótesis, blanqueamiento, reconstrucción dental y más en Santiago del Estero.",
+    "Consultorio odontológico en Santiago del Estero con más de 20 años de experiencia. Odontopediatría, prótesis, blanqueamiento y más. Atendemos obras sociales.",
   alternates: {
     canonical: "/",
   },
