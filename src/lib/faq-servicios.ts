@@ -67,12 +67,17 @@ const faqServicios: Record<string, Pregunta[]> = {
     },
     {
       id: 2,
+      pregunta: "¿En cuántas sesiones se hace?",
+      respuesta: "En una o dos sesiones, según el caso.",
+    },
+    {
+      id: 3,
       pregunta: "¿Después siempre hay que ponerle una corona?",
       respuesta:
         "Depende. Si el diente perdió mucha estructura por la caries, sí: la corona lo abraza y lo protege. Si quedó buen tejido sano, con una resina de alta resistencia alcanza.",
     },
     {
-      id: 3,
+      id: 4,
       pregunta: "¿El diente queda igual de fuerte que antes?",
       respuesta:
         "Al sacarle el nervio y la irrigación, el diente se va deshidratando con los años y queda algo más propenso a fracturarse. Por eso a veces insistimos con la corona.",
@@ -92,17 +97,29 @@ const faqServicios: Record<string, Pregunta[]> = {
       respuesta:
         "Paciencia. Usamos la técnica de decir, mostrar y hacer: jugamos, le mostramos el instrumental como si fueran autitos o aviones, y terminamos convenciéndolo.",
     },
+    {
+      id: 3,
+      pregunta: "¿Los padres pueden entrar con el chico?",
+      respuesta:
+        "Sí. Pueden entrar y acompañarlo durante toda la consulta.",
+    },
   ],
 
   "protesis-odontologica": [
     {
       id: 1,
+      pregunta: "¿Cuántas sesiones lleva hacer una prótesis?",
+      respuesta:
+        "Calculá unas cuatro sesiones desde la primera consulta hasta tenerla puesta.",
+    },
+    {
+      id: 2,
       pregunta: "¿Cómo deciden entre prótesis fija y removible?",
       respuesta:
         "Depende de cuántos dientes falten, del hueso que tengas y de tu presupuesto. Siempre priorizamos lo fijo, sobre dientes o sobre implantes, porque es más cómodo y natural. Si faltan pilares o no se puede costear, vamos a la removible.",
     },
     {
-      id: 2,
+      id: 3,
       pregunta: "¿Cuánto dura una prótesis y qué mantenimiento necesita?",
       respuesta:
         "Una prótesis fija bien cuidada puede durar de 10 a 15 años. A la removible quizás haya que rebasarla cada tanto, porque la encía y el hueso se van achicando. Las dos se limpian todos los días como si fueran tus dientes, y conviene un control anual.",
@@ -130,6 +147,12 @@ const faqServicios: Record<string, Pregunta[]> = {
       pregunta: "¿Las radiografías dentales son seguras?",
       respuesta:
         "Sí. Los equipos de hoy son digitales: la radiación que recibís con una placa periapical es menor que la que absorbés caminando un rato al sol.",
+    },
+    {
+      id: 2,
+      pregunta: "¿Las radiografías las hacen ahí o hay que ir a otro lado?",
+      respuesta:
+        "Las hacemos en el mismo consultorio, así que no tenés que ir a otro lado.",
     },
   ],
 
