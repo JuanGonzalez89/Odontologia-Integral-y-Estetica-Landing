@@ -41,11 +41,11 @@ export default function HomePage() {
             Santiago del Estero
           </span>
           <h1 className="mt-5 max-w-2xl text-4xl font-bold tracking-tight sm:text-5xl">
-            Odontología Integral y Estética
+            Odontólogos en Santiago del Estero: atención integral y estética
           </h1>
           <p className="mt-4 max-w-xl text-lg text-white/90">
             Cuidamos tu sonrisa con atención profesional, calidez y compromiso.
-            Más de 20 años de experiencia en Santiago del Estero.
+            Más de 20 años de experiencia para adultos y niños en Santiago del Estero.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link

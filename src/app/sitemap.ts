@@ -2,13 +2,14 @@ import type { MetadataRoute } from "next"
 import { SITE_URL } from "@/lib/constants"
 import servicios from "@/lib/servicios"
 import condiciones from "@/lib/condiciones"
+import articulos from "@/lib/articulos"
 
 /**
  * Fecha de la última revisión del contenido. Se actualiza a mano cuando los
  * textos cambian: usar `new Date()` le informaría a Google que todas las
  * páginas se modificaron en cada rastreo, y termina ignorando la señal.
  */
-const ULTIMA_REVISION = new Date("2026-08-11")
+const ULTIMA_REVISION = new Date("2026-09-15")
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes: MetadataRoute.Sitemap = [
@@ -31,6 +32,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     routes.push({
       url: `${SITE_URL}/condiciones/${c.slug}`,
       lastModified: ULTIMA_REVISION,
+    })
+  }
+
+  routes.push({ url: `${SITE_URL}/blog`, lastModified: ULTIMA_REVISION })
+  for (const articulo of articulos) {
+    routes.push({
+      url: `${SITE_URL}/blog/${articulo.slug}`,
+      lastModified: new Date(articulo.fechaModificacion),
     })
   }
 

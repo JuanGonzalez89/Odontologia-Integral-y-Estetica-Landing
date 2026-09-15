@@ -5,12 +5,24 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-white">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-4">
           <div>
             <h3 className="text-lg font-bold">Odontología Integral y Estética</h3>
             <p className="mt-2 text-sm text-white/90">
               Cuidamos tu sonrisa con profesionales y la mejor atención.
             </p>
+          </div>
+
+          <div>
+            <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white">
+              Información útil
+            </h4>
+            <Link
+              href="/blog"
+              className="text-sm font-medium text-secondary-light hover:text-secondary hover:underline"
+            >
+              Consejos de salud dental &rarr;
+            </Link>
           </div>
 
           <div>
