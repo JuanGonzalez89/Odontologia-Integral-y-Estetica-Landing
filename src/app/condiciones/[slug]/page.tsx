@@ -3,10 +3,17 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import { AlertTriangle } from "lucide-react"
 import condiciones, { getCondicionBySlug } from "@/lib/condiciones"
+import servicios from "@/lib/servicios"
+import equipo from "@/lib/equipo"
+import faqCondiciones from "@/lib/faq-condiciones"
+import { ULTIMA_REVISION, ultimaRevisionTexto } from "@/lib/contenido"
 import { whatsappUrl } from "@/lib/contacto"
 import { SITE_URL } from "@/lib/constants"
 import { breadcrumbJsonLd, clinicaRef } from "@/lib/schema"
 import JsonLd from "@/components/JsonLd"
+import PreguntasFrecuentes from "@/components/PreguntasFrecuentes"
+import SeccionesContenido from "@/components/SeccionesContenido"
+import ProfesionalesAtencion from "@/components/ProfesionalesAtencion"
 
 export async function generateStaticParams() {
   return condiciones.map((c) => ({ slug: c.slug }))
@@ -22,7 +29,7 @@ export async function generateMetadata(props: {
 
   return {
     title: `${condicion.nombre}: causas y tratamiento`,
-    description: condicion.descripcionCorta,
+    description: condicion.metaDescripcion,
     alternates: {
       canonical: `/condiciones/${condicion.slug}`,
     },
@@ -41,6 +48,11 @@ export default async function CondicionDetallePage(props: {
     .filter((c) => c.id !== condicion.id)
     .slice(0, 3)
 
+  const serviciosRelacionados = servicios.filter((s) =>
+    condicion.servicios.includes(s.slug)
+  )
+  const preguntas = faqCondiciones[condicion.slug] ?? []
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
@@ -48,6 +60,7 @@ export default async function CondicionDetallePage(props: {
     description: condicion.descripcionCorta,
     url: `${SITE_URL}/condiciones/${condicion.slug}`,
     inLanguage: "es-AR",
+    dateModified: ULTIMA_REVISION.toISOString().slice(0, 10),
     about: {
       "@type": "MedicalCondition",
       name: condicion.nombre,
@@ -116,6 +129,38 @@ export default async function CondicionDetallePage(props: {
         ))}
       </div>
 
+      <SeccionesContenido secciones={condicion.secciones} />
+
+      {serviciosRelacionados.length > 0 && (
+        <div className="mt-10">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-text/50">
+            Tratamientos relacionados
+          </h2>
+          <div className="mt-4 flex flex-wrap gap-3">
+            {serviciosRelacionados.map((s) => (
+              <Link
+                key={s.id}
+                href={`/servicios/${s.slug}`}
+                className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm text-text/80 transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
+              >
+                <s.icono className="h-4 w-4 text-primary" />
+                {s.nombre}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <ProfesionalesAtencion
+        profesionales={equipo}
+        titulo="Te atienden"
+        className="mt-10"
+      />
+
+      {preguntas.length > 0 && (
+        <PreguntasFrecuentes preguntas={preguntas} className="mt-10" />
+      )}
+
       <div className="mt-10 rounded-xl bg-surface p-6 text-center">
         <p className="text-text/70">
           ¿Tenés dudas o querés consultar por un turno?
@@ -147,6 +192,11 @@ export default async function CondicionDetallePage(props: {
           ))}
         </div>
       </div>
+
+      <p className="mt-10 text-xs text-text/50">
+        Información general, no reemplaza una consulta. Última actualización:{" "}
+        {ultimaRevisionTexto}.
+      </p>
     </main>
   )
 }

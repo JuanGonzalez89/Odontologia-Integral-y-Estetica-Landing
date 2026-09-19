@@ -3,13 +3,7 @@ import { SITE_URL } from "@/lib/constants"
 import servicios from "@/lib/servicios"
 import condiciones from "@/lib/condiciones"
 import articulos from "@/lib/articulos"
-
-/**
- * Fecha de la última revisión del contenido. Se actualiza a mano cuando los
- * textos cambian: usar `new Date()` le informaría a Google que todas las
- * páginas se modificaron en cada rastreo, y termina ignorando la señal.
- */
-const ULTIMA_REVISION = new Date("2026-09-15")
+import { ULTIMA_REVISION } from "@/lib/contenido"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes: MetadataRoute.Sitemap = [

@@ -1,15 +1,18 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import Image from "next/image"
 import Link from "next/link"
 import servicios, { getServicioBySlug } from "@/lib/servicios"
 import equipo from "@/lib/equipo"
 import { whatsappUrl } from "@/lib/contacto"
 import { SITE_URL } from "@/lib/constants"
 import { breadcrumbJsonLd, clinicaRef, profesionalRef } from "@/lib/schema"
+import condiciones from "@/lib/condiciones"
 import faqServicios from "@/lib/faq-servicios"
+import { ultimaRevisionTexto } from "@/lib/contenido"
 import JsonLd from "@/components/JsonLd"
 import PreguntasFrecuentes from "@/components/PreguntasFrecuentes"
+import SeccionesContenido from "@/components/SeccionesContenido"
+import ProfesionalesAtencion from "@/components/ProfesionalesAtencion"
 
 export async function generateStaticParams() {
   return servicios.map((s) => ({ slug: s.slug }))
@@ -71,6 +74,9 @@ export default async function ServicioDetallePage(props: {
   ])
 
   const preguntas = faqServicios[servicio.slug] ?? []
+  const condicionesRelacionadas = condiciones.filter((c) =>
+    c.servicios.includes(servicio.slug)
+  )
 
   return (
     <main id="main-content" className="mx-auto max-w-3xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
@@ -112,36 +118,9 @@ export default async function ServicioDetallePage(props: {
         ))}
       </div>
 
-      {profesionales.length > 0 && (
-        <div className="mt-8">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-text/50">
-            Atendido por
-          </h2>
-          <div className="mt-3 flex flex-wrap gap-4">
-            {profesionales.map((p) => (
-              <Link
-                key={p.id}
-                href={`/sobre-nosotros#integrante-${p.id}`}
-                className="group flex items-center gap-3 rounded-xl border border-zinc-200 bg-white py-2 pl-2 pr-4 shadow-sm transition-shadow hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
-              >
-                <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-full bg-zinc-100">
-                  <Image
-                    src={p.foto}
-                    alt={p.nombre}
-                    width={40}
-                    height={40}
-                    className="h-full w-full object-cover"
-                    style={{ objectPosition: p.fotoPosicion ?? "center" }}
-                  />
-                </div>
-                <span className="text-sm font-medium text-primary group-hover:text-primary-light">
-                  {p.nombre}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
+      <SeccionesContenido secciones={servicio.secciones} />
+
+      <ProfesionalesAtencion profesionales={profesionales} className="mt-10" />
 
       {preguntas.length > 0 && (
         <PreguntasFrecuentes preguntas={preguntas} className="mt-10" />
@@ -161,6 +140,26 @@ export default async function ServicioDetallePage(props: {
         </Link>
       </div>
 
+      {condicionesRelacionadas.length > 0 && (
+        <div className="mt-10 border-t border-zinc-200 pt-8">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-text/50">
+            Condiciones que se tratan con este servicio
+          </h2>
+          <div className="mt-4 flex flex-wrap gap-3">
+            {condicionesRelacionadas.map((c) => (
+              <Link
+                key={c.id}
+                href={`/condiciones/${c.slug}`}
+                className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm text-text/80 transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
+              >
+                <c.icono className="h-4 w-4 text-primary" />
+                {c.nombre}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="mt-10 border-t border-zinc-200 pt-8">
         <h2 className="text-sm font-semibold uppercase tracking-wider text-text/50">
           Otros servicios
@@ -178,6 +177,11 @@ export default async function ServicioDetallePage(props: {
           ))}
         </div>
       </div>
+
+      <p className="mt-10 text-xs text-text/50">
+        Información general, no reemplaza una consulta. Última actualización:{" "}
+        {ultimaRevisionTexto}.
+      </p>
     </main>
   )
 }
