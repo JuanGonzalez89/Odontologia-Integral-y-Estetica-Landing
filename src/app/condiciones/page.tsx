@@ -2,17 +2,16 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { AlertTriangle } from "lucide-react"
 import condiciones from "@/lib/condiciones"
-import { breadcrumbJsonLd } from "@/lib/schema"
+import { breadcrumbJsonLd, collectionPageJsonLd } from "@/lib/schema"
 import JsonLd from "@/components/JsonLd"
+import { metadataPagina } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Condiciones y enfermedades bucales",
-  description:
+export const metadata: Metadata = metadataPagina({
+  titulo: "Condiciones y enfermedades bucales",
+  descripcion:
     "Información sobre las condiciones y enfermedades bucales más comunes: dolor de muela, caries, absceso, gingivitis, bruxismo y más.",
-  alternates: {
-    canonical: "/condiciones",
-  },
-}
+  ruta: "/condiciones",
+})
 
 export default function CondicionesPage() {
   return (
@@ -22,6 +21,18 @@ export default function CondicionesPage() {
           { nombre: "Inicio", url: "/" },
           { nombre: "Condiciones" },
         ])}
+      />
+      <JsonLd
+        data={collectionPageJsonLd({
+          ruta: "/condiciones",
+          nombre: "Condiciones y enfermedades bucales",
+          descripcion:
+            "Información clínica general sobre síntomas y condiciones bucales frecuentes.",
+          items: condiciones.map((condicion) => ({
+            nombre: condicion.nombre,
+            ruta: `/condiciones/${condicion.slug}`,
+          })),
+        })}
       />
 
       <nav aria-label="Breadcrumb" className="text-sm text-text/50">

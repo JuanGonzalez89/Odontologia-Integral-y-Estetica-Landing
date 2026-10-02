@@ -14,14 +14,14 @@ import CasosAntesDespues from "@/components/CasosAntesDespues"
 import GaleriaConsultorio from "@/components/GaleriaConsultorio"
 import ObrasSociales from "@/components/ObrasSociales"
 import PreguntasFrecuentes from "@/components/PreguntasFrecuentes"
+import { metadataPagina } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  description:
+export const metadata: Metadata = metadataPagina({
+  titulo: "Odontólogos en Santiago del Estero | Consultorio dental",
+  descripcion:
     "Consultorio odontológico en Santiago del Estero con más de 20 años de experiencia. Odontopediatría, prótesis, blanqueamiento y más. Atendemos obras sociales.",
-  alternates: {
-    canonical: "/",
-  },
-}
+  ruta: "/",
+})
 
 export default function HomePage() {
   return (

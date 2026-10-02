@@ -16,6 +16,8 @@ export interface Servicio {
   id: number
   slug: string
   nombre: string
+  /** Título específico para buscadores cuando la consulta habitual difiere del nombre clínico. */
+  tituloSeo?: string
   descripcionCorta: string
   /**
    * Texto para el resultado de búsqueda de Google, cuando `descripcionCorta`
@@ -36,6 +38,7 @@ const servicios: Servicio[] = [
     id: 1,
     slug: "odontopediatria",
     nombre: "Odontopediatría",
+    tituloSeo: "Odontopediatra para niños en Santiago del Estero",
     descripcionCorta:
       "Atención odontológica especializada para niños, en un ambiente pensado para que la visita al dentista sea una experiencia tranquila y sin miedo.",
     metaDescripcion:
