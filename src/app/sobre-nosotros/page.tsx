@@ -4,17 +4,16 @@ import Link from "next/link"
 import { Award, BadgeCheck, Mail, MessageCircle } from "lucide-react"
 import equipo from "@/lib/equipo"
 import { whatsappUrl } from "@/lib/contacto"
-import { breadcrumbJsonLd } from "@/lib/schema"
+import { breadcrumbJsonLd, paginaInstitucionalJsonLd } from "@/lib/schema"
 import JsonLd from "@/components/JsonLd"
+import { metadataPagina } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Nuestro equipo de odontólogos",
-  description:
+export const metadata: Metadata = metadataPagina({
+  titulo: "Odontólogos Gustavo y Verónica González",
+  descripcion:
     "Conocé al equipo de odontólogos del consultorio en Santiago del Estero: Gustavo Germán González y María Verónica González, con más de 20 años de experiencia.",
-  alternates: {
-    canonical: "/sobre-nosotros",
-  },
-}
+  ruta: "/sobre-nosotros",
+})
 
 export default function SobreNosotrosPage() {
   return (
@@ -24,6 +23,15 @@ export default function SobreNosotrosPage() {
           { nombre: "Inicio", url: "/" },
           { nombre: "Sobre nosotros" },
         ])}
+      />
+      <JsonLd
+        data={paginaInstitucionalJsonLd({
+          tipo: "AboutPage",
+          ruta: "/sobre-nosotros",
+          nombre: "Equipo de odontólogos",
+          descripcion:
+            "Trayectoria, matrículas y áreas de atención de Gustavo Germán González y María Verónica González.",
+        })}
       />
 
       <nav aria-label="Breadcrumb" className="text-sm text-text/50">

@@ -15,7 +15,7 @@ export interface Seccion {
  * condiciones. Se actualiza a mano cuando los textos cambian: usar
  * `new Date()` le informaría a Google que todo se modificó en cada rastreo.
  */
-export const ULTIMA_REVISION = new Date("2026-09-19")
+export const ULTIMA_REVISION = new Date("2026-10-02")
 
 export const ultimaRevisionTexto = ULTIMA_REVISION.toLocaleDateString("es-AR", {
   day: "numeric",

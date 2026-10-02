@@ -1,17 +1,16 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import servicios from "@/lib/servicios"
-import { breadcrumbJsonLd } from "@/lib/schema"
+import { breadcrumbJsonLd, collectionPageJsonLd } from "@/lib/schema"
 import JsonLd from "@/components/JsonLd"
+import { metadataPagina } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Servicios odontológicos en Santiago del Estero",
-  description:
+export const metadata: Metadata = metadataPagina({
+  titulo: "Servicios odontológicos en Santiago del Estero",
+  descripcion:
     "Odontopediatría, prótesis, blanqueamiento, cirugía, endodoncia, limpieza dental y radiografías en Santiago del Estero. Conocé todos nuestros tratamientos.",
-  alternates: {
-    canonical: "/servicios",
-  },
-}
+  ruta: "/servicios",
+})
 
 export default function ServiciosPage() {
   return (
@@ -21,6 +20,18 @@ export default function ServiciosPage() {
           { nombre: "Inicio", url: "/" },
           { nombre: "Servicios" },
         ])}
+      />
+      <JsonLd
+        data={collectionPageJsonLd({
+          ruta: "/servicios",
+          nombre: "Servicios odontológicos en Santiago del Estero",
+          descripcion:
+            "Tratamientos odontológicos para adultos y niños en Santiago del Estero.",
+          items: servicios.map((servicio) => ({
+            nombre: servicio.nombre,
+            ruta: `/servicios/${servicio.slug}`,
+          })),
+        })}
       />
 
       <nav aria-label="Breadcrumb" className="text-sm text-text/50">

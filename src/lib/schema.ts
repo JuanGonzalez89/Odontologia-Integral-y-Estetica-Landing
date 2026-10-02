@@ -57,3 +57,68 @@ export function breadcrumbJsonLd(migas: Miga[]) {
     })),
   }
 }
+
+interface ColeccionItem {
+  nombre: string
+  ruta: string
+}
+
+/** Describe una portada y su listado para buscadores y asistentes de IA. */
+export function collectionPageJsonLd({
+  ruta,
+  nombre,
+  descripcion,
+  items,
+}: {
+  ruta: string
+  nombre: string
+  descripcion: string
+  items: ColeccionItem[]
+}) {
+  const url = `${SITE_URL}${ruta}`
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${url}#pagina`,
+    url,
+    name: nombre,
+    description: descripcion,
+    inLanguage: "es-AR",
+    isPartOf: { "@id": `${SITE_URL}/#sitio-web` },
+    about: { "@id": CLINICA_ID },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: items.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.nombre,
+        url: `${SITE_URL}${item.ruta}`,
+      })),
+    },
+  }
+}
+
+export function paginaInstitucionalJsonLd({
+  tipo,
+  ruta,
+  nombre,
+  descripcion,
+}: {
+  tipo: "AboutPage" | "ContactPage"
+  ruta: string
+  nombre: string
+  descripcion: string
+}) {
+  const url = `${SITE_URL}${ruta}`
+  return {
+    "@context": "https://schema.org",
+    "@type": tipo,
+    "@id": `${url}#pagina`,
+    url,
+    name: nombre,
+    description: descripcion,
+    inLanguage: "es-AR",
+    isPartOf: { "@id": `${SITE_URL}/#sitio-web` },
+    mainEntity: { "@id": CLINICA_ID },
+  }
+}

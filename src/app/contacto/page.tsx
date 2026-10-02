@@ -4,20 +4,19 @@ import Link from "next/link"
 import { MapPin, Clock, Mail, Phone, MessageCircle, Calendar } from "lucide-react"
 import { CONTACTO, whatsappUrl } from "@/lib/contacto"
 import equipo from "@/lib/equipo"
-import { breadcrumbJsonLd } from "@/lib/schema"
+import { breadcrumbJsonLd, paginaInstitucionalJsonLd } from "@/lib/schema"
 import JsonLd from "@/components/JsonLd"
 import ContactForm from "./ContactForm"
 import AgendaModal from "@/components/AgendaModal"
 import ObrasSociales from "@/components/ObrasSociales"
+import { metadataPagina } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Turnos y contacto en Santiago del Estero",
-  description:
+export const metadata: Metadata = metadataPagina({
+  titulo: "Turnos odontológicos en Santiago del Estero",
+  descripcion:
     "Pedí tu turno en Avellaneda 283, Santiago del Estero. Atendemos de lunes a viernes, mañana y tarde. Escribinos por WhatsApp o dejanos tu consulta.",
-  alternates: {
-    canonical: "/contacto",
-  },
-}
+  ruta: "/contacto",
+})
 
 export default function ContactoPage() {
   return (
@@ -27,6 +26,15 @@ export default function ContactoPage() {
           { nombre: "Inicio", url: "/" },
           { nombre: "Contacto" },
         ])}
+      />
+      <JsonLd
+        data={paginaInstitucionalJsonLd({
+          tipo: "ContactPage",
+          ruta: "/contacto",
+          nombre: "Turnos y contacto",
+          descripcion:
+            "Teléfonos, WhatsApp, horarios y ubicación del consultorio en Santiago del Estero.",
+        })}
       />
 
       <nav aria-label="Breadcrumb" className="text-sm text-text/50">

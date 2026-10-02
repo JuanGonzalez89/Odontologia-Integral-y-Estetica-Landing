@@ -9,7 +9,8 @@ import faqCondiciones from "@/lib/faq-condiciones"
 import { ULTIMA_REVISION, ultimaRevisionTexto } from "@/lib/contenido"
 import { whatsappUrl } from "@/lib/contacto"
 import { SITE_URL } from "@/lib/constants"
-import { breadcrumbJsonLd, clinicaRef } from "@/lib/schema"
+import { breadcrumbJsonLd, clinicaRef, profesionalRef } from "@/lib/schema"
+import { metadataPagina } from "@/lib/seo"
 import JsonLd from "@/components/JsonLd"
 import PreguntasFrecuentes from "@/components/PreguntasFrecuentes"
 import SeccionesContenido from "@/components/SeccionesContenido"
@@ -27,13 +28,11 @@ export async function generateMetadata(props: {
 
   if (!condicion) return {}
 
-  return {
-    title: `${condicion.nombre}: causas y tratamiento`,
-    description: condicion.metaDescripcion,
-    alternates: {
-      canonical: `/condiciones/${condicion.slug}`,
-    },
-  }
+  return metadataPagina({
+    titulo: `${condicion.nombre}: causas y tratamiento`,
+    descripcion: condicion.metaDescripcion,
+    ruta: `/condiciones/${condicion.slug}`,
+  })
 }
 
 export default async function CondicionDetallePage(props: {
@@ -61,13 +60,14 @@ export default async function CondicionDetallePage(props: {
     url: `${SITE_URL}/condiciones/${condicion.slug}`,
     inLanguage: "es-AR",
     dateModified: ULTIMA_REVISION.toISOString().slice(0, 10),
+    lastReviewed: ULTIMA_REVISION.toISOString().slice(0, 10),
     about: {
       "@type": "MedicalCondition",
       name: condicion.nombre,
       description: condicion.descripcionCorta,
     },
     publisher: clinicaRef,
-    reviewedBy: clinicaRef,
+    reviewedBy: equipo.map(profesionalRef),
   }
 
   const breadcrumb = breadcrumbJsonLd([

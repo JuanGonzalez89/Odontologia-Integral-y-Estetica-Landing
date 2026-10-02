@@ -8,7 +8,8 @@ import { SITE_URL } from "@/lib/constants"
 import { breadcrumbJsonLd, clinicaRef, profesionalRef } from "@/lib/schema"
 import condiciones from "@/lib/condiciones"
 import faqServicios from "@/lib/faq-servicios"
-import { ultimaRevisionTexto } from "@/lib/contenido"
+import { ULTIMA_REVISION, ultimaRevisionTexto } from "@/lib/contenido"
+import { metadataPagina } from "@/lib/seo"
 import JsonLd from "@/components/JsonLd"
 import PreguntasFrecuentes from "@/components/PreguntasFrecuentes"
 import SeccionesContenido from "@/components/SeccionesContenido"
@@ -26,13 +27,11 @@ export async function generateMetadata(props: {
 
   if (!servicio) return {}
 
-  return {
-    title: `${servicio.nombre} en Santiago del Estero`,
-    description: servicio.metaDescripcion ?? servicio.descripcionCorta,
-    alternates: {
-      canonical: `/servicios/${servicio.slug}`,
-    },
-  }
+  return metadataPagina({
+    titulo: servicio.tituloSeo ?? `${servicio.nombre} en Santiago del Estero`,
+    descripcion: servicio.metaDescripcion ?? servicio.descripcionCorta,
+    ruta: `/servicios/${servicio.slug}`,
+  })
 }
 
 export default async function ServicioDetallePage(props: {
@@ -58,10 +57,15 @@ export default async function ServicioDetallePage(props: {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalProcedure",
+    "@id": `${SITE_URL}/servicios/${servicio.slug}#procedimiento`,
     name: servicio.nombre,
     description: servicio.descripcionCorta,
     url: `${SITE_URL}/servicios/${servicio.slug}`,
+    mainEntityOfPage: `${SITE_URL}/servicios/${servicio.slug}`,
+    inLanguage: "es-AR",
+    dateModified: ULTIMA_REVISION.toISOString().slice(0, 10),
     provider: clinicaRef,
+    areaServed: { "@type": "City", name: "Santiago del Estero" },
     ...(profesionales.length > 0 && {
       performer: profesionales.map(profesionalRef),
     }),
